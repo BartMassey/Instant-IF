@@ -1,4 +1,7 @@
-"Instant-IF" by "Bart Massey"
+"Instant IF" by "Bart Massey"
+
+[ Copyright © 2012 Bart Massey ]
+[ Released under the Creative Commons Attribution 3.0 United States license: http://creativecommons.org/licenses/by/3.0/us/ ]
 
 Release along with the library card, an interpreter and the source text.
 
