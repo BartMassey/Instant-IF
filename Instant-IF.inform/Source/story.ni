@@ -17,7 +17,7 @@ Coach Doppelganger is wearing a Coach's hat. The description of the hat is "Whit
 
 An person can be bored. A person is usually not bored. After the player waiting: now the player is bored. After the player doing something other than waiting, now the player is not bored.
 
-Coach D's Instructions is a scene.  "Coach D whistles for order.[paragraph break] Coach D says 'OK, kids: here's what we're doing: Group around folks with laptops; pick a group Secretary; install Inform 7; sign the low-tech email list.'" Coach D's Instructions begins when the player is bored for the first time. When Coach D's Instructions begins: now the player is not bored. Coach D's Instructions ends when the player is not bored.
+Coach D's Instructions is a scene.  "Coach D whistles for order.[paragraph break] Coach D says 'OK, kids, here's what we're doing: Group around folks with laptops; pick a group Secretary; install Inform 7; sign into irc.oftc.net #osbi7 .'" Coach D's Instructions begins when the player is bored for the first time. When Coach D's Instructions begins: now the player is not bored. Coach D's Instructions ends when the player is not bored.
 
 Describing IF is a scene. "Coach D begins to lecture. 'What is Interactive Fiction (IF)?
 
@@ -34,13 +34,27 @@ However, the traditional form is the [']text adventure[']:[line break]
     to the player.[line break]
   * Wash, rinse, repeat'
 
-Coach D hands everyone an Adventure Induction Unit. He says 'Rub this to play a simple IF mystery.'"
+Coach D hands everyone an Adventure Induction Device. He says 'Tap this to play a simple IF mystery.'"
 
-Describing IF begins when Coach D's Instructions has ended and the player is bored. When Describing IF begins: now the player carries the Adventure Induction Unit; now the player is not bored.
+Describing IF begins when Coach D's Instructions has ended and the player is bored. Describing IF ends when the player is not bored. When Describing IF begins: now the player is not bored. When Describing IF ends: now the player carries the Adventure Induction Device.
 
-The Adventure Induction Unit is a thing. The description is "This is a simple chrome spheroid about the size of an egg." Instead of rubbing the adventure induction unit: say "As you rub, you feel the world slip away..."; now the player is in the Dojo.
+Tapping is an action applying to one carried thing. Understand "tap [thing]" as tapping.
 
-Test me with "accuse me / wait /wait / rub unit / x me / accuse me / x me".
+The Adventure Induction Device is a thing. The description is "This is a simple chrome spheroid about the size of an egg." Carry out tapping the Adventure Induction Device: say "As you tap [the Adventure Induction Device], you feel the world slip away..."; now the player is in the Dojo.
+
+Test me with "accuse me / wait /wait / tap device / i / x me / s / x body / x body / accuse me / x me / i".
+
+Specifying The Game is a scene. Specifying The Game begins when Samurai Detective ends. When Specifying The Game begins: say "Coach D taps a hidden panel on the wall. It falls open to reveal a scenario guide. 'Read it,' he says curtly."; now the hidden panel is in the Meeting Room; now the scenario guide is on the hidden panel.
+
+The hidden panel is a fixed in place supporter. The description is "This panel hinges out from the wall to form a little table." Understand "table" as the panel. Instead of closing the hidden panel: say "It won't budge."
+
+The scenario guide is a thing. The description is "Today we will be building a treasure hunt puzzle with the theme 'Red Herrings'.
+
+Each team will create a room filled with objects, perhaps puzzles to deliver those objects, perhaps devices that spit them out, etc. All but one of the team's objects should somehow be, have, or allude to 'red herring'. For example, the thing could be a teapot with a red herring on the bottom, or it could be a bathtub ring of red hair (uggh).
+
+Each team will be given an initial letter for its non-red-herring object. I will complete the final puzzle, in which these items must be put in the right order to spell a word and receive a prize.
+
+Good luck."
 
 Book - Samurai Detective
 
@@ -49,13 +63,17 @@ Book - Samurai Detective
 
 Samurai Detective is a recurring scene. Samurai Detective begins when the player is in the Dojo. Samurai Detective ends when the player is not in the Dojo.
 
+To empty the player's inventory: let L be the list of things carried by the player; repeat with the thing emptied running through L begin; remove the thing emptied from play; end repeat.
+
+To load the player's inventory from (L - a list of things): repeat with the thing loaded running through L begin; now the player carries the thing loaded; end repeat.
+
 The default description of the player is a text that varies.
 
-To continue the tutorial: say "[conditional paragraph break]You feel the adventure world slip away..."; now the player is in the meeting room; now the description of the player is the default description of the player.
+To continue the tutorial: say "[conditional paragraph break]The real world gradually intrudes..."; now the player is in the meeting room; now the description of the player is the default description of the player; empty the player's inventory; load the player's inventory from the real player possessions.
 
 The real player possessions is a list of things that varies.
 
-When Samurai Detective begins: say "[paragraph break](To try to solve the mystery, say ACCUSE [italic type](killer).[roman type])[paragraph break]"; now the real player possessions is the list of things carried by the player; repeat with the thing carried running through the list of things carried by the player begin; remove the thing carried from play; end repeat; now the player carries the katana; now the default description of the player is the description of the player; now the description of the player is "You are short and mysterious.[if the player is carrying the katana] You carry a [katana] slightly too large for your slender frame.[end if]".
+When Samurai Detective begins: say "[paragraph break](To try to solve the mystery, say ACCUSE [italic type](killer).[roman type])[paragraph break]"; now the real player possessions is the list of things carried by the player; empty the player's inventory; now the player carries the katana; now the default description of the player is the description of the player; now the description of the player is "You are short and mysterious.[if the player is carrying the katana] You carry a [katana] slightly too large for your slender frame.[end if]".
 
 Include Locksmith by Emily Short.
 
@@ -95,9 +113,7 @@ To decide whether (the accused - an indexed text) is referred to in (the directo
 
 To decide whether (the accused - an indexed text) is not referred to in (the directory - a table name): if the accused is referred to in the directory, decide no; decide yes.
 
-Carry out accusing during Samurai Detective: let the accused be an indexed text; let the accused be the topic understood; if the accused is referred to in the Table of Nonsense Murderer Names, instead indicate cheating; if the accused is not "" and the accused is not referred to in the Table of Murderer Names, instead indicate flailing; say "You stand accused...[paragraph break]You have solved the mystery! Murderer."; continue the tutorial.
-
-Carry out accusing: say "Accusing people is normally a fairly antisocial activity."
+Carry out accusing: if Samurai Detective is not happening, instead say "Accusing people is normally a fairly antisocial activity."; let the accused be an indexed text; let the accused be the topic understood; if the accused is referred to in the Table of Nonsense Murderer Names, instead indicate cheating; if the accused is not "" and the accused is not referred to in the Table of Murderer Names, instead indicate flailing; say "You stand accused...[paragraph break]You have solved the mystery! Murderer."; continue the tutorial.
 
 Table of Nonsense Murderer Names
 Murderer
